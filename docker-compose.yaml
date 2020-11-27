@@ -1,0 +1,34 @@
+version: '3'
+services:
+    voi-backend:
+        build: ./Backend
+        container_name: voi-backend
+        ports:
+            - 80:80
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: finishme
+            POSTGRES_DB: postgres
+            POSTGRES_PORT: 5432
+            POSTGRES_HOST: voi-postgres
+            PORT: 80
+        depends_on:
+            - voi-postgres
+        links:
+            - voi-postgres
+
+
+    voi-postgres:
+        image: "postgres:9.6-alpine"
+        container_name: voi-postgres
+        volumes:
+            - voi-data:/var/lib/postgresql/data
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_DB: postgres
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: voipass
+
+volumes:
+    voi-data:
