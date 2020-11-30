@@ -3,32 +3,63 @@ services:
     voi-backend:
         build: ./Backend
         container_name: voi-backend
+        command: sh -c "
+            sleep 15 &&
+            python main.py"
         ports:
             - 80:80
         environment:
             POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: finishme
+            POSTGRES_PASSWORD: voi
             POSTGRES_DB: postgres
             POSTGRES_PORT: 5432
             POSTGRES_HOST: voi-postgres
+            ELASTIC_HOST: voi-es
+            ELASTIC_PORT: 9200
             PORT: 80
         depends_on:
             - voi-postgres
+            - voi-es
+            - voi-kibana
         links:
             - voi-postgres
-
+            - voi-es
+            - voi-kibana
 
     voi-postgres:
         image: "postgres:9.6-alpine"
         container_name: voi-postgres
         volumes:
             - voi-data:/var/lib/postgresql/data
-        ports:
-            - 5432:5432
         environment:
             POSTGRES_DB: postgres
             POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: voipass
+            POSTGRES_PASSWORD: voi
+        ports:
+            - 5432:5432
+
+    voi-es:
+        image: 'elasticsearch:6.6.0'
+        container_name: voi-es
+        volumes:
+            - data01:/usr/share/elasticsearch/data
+        restart: always
+        environment:
+            - node.name=voi-es
+            - discovery.type=single-node
+        ports:
+            - 9200:9200
+
+    voi-kibana:
+        image: docker.elastic.co/kibana/kibana:6.6.0
+        container_name: voi-kibana
+        environment:
+            ELASTICSEARCH_URL: http://voi-es:9200
+            ELASTICSEARCH_HOSTS: http://voi-es:9200
+        ports:
+            - 5601:5601
 
 volumes:
     voi-data:
+    data01:
+        driver: local
