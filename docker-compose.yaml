@@ -8,6 +8,8 @@ services:
             python main.py"
         ports:
             - 80:80
+        volumes:
+            - audio-data:/audio_data
         environment:
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: voi
@@ -61,5 +63,7 @@ services:
 
 volumes:
     voi-data:
+    audio-data:
+        driver: local
     data01:
         driver: local
