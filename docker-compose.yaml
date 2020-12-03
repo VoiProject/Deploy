@@ -1,7 +1,7 @@
 version: '3'
 services:
     voi-backend:
-        build: ./Backend
+        build: ./FlaskBackend
         container_name: voi-backend
         command: sh -c "
             sleep 15 &&
