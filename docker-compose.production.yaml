@@ -1,0 +1,16 @@
+version: '3'
+services:
+    voi-backend:
+        command: sh -c "
+            sleep 15 &&
+            python main.py"
+        volumes:
+            - voi-production-audio:/audio_data
+
+    voi-postgres:
+        volumes:
+            - voi-production-pg:/var/lib/postgresql/data
+
+    voi-es:
+        volumes:
+            - voi-production-es:/usr/share/elasticsearch/data

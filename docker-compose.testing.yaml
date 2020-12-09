@@ -1,0 +1,16 @@
+version: '3'
+services:
+    voi-backend:
+        command: sh -c "
+            sleep 15 &&
+            pytest"
+        volumes:
+            - voi-testing-audio:/audio_data
+
+    voi-postgres:
+        volumes:
+            - voi-testing-pg:/var/lib/postgresql/data
+
+    voi-es:
+        volumes:
+            - voi-testing-es:/usr/share/elasticsearch/data
