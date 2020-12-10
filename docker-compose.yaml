@@ -14,6 +14,7 @@ services:
             ELASTIC_HOST: voi-es
             ELASTIC_PORT: 9200
             PORT: 80
+            AUDIO_DIR: /audio_data
         depends_on:
             - voi-postgres
             - voi-es
