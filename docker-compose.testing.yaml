@@ -3,7 +3,7 @@ services:
     voi-backend:
         command: sh -c "
             sleep 15 &&
-            pytest"
+            pytest -rA"
         volumes:
             - voi-testing-audio:/audio_data
 

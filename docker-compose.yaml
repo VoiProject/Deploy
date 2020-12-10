@@ -15,14 +15,13 @@ services:
             ELASTIC_PORT: 9200
             PORT: 80
             AUDIO_DIR: /audio_data
+            PYTHONUNBUFFERED: 1
         depends_on:
             - voi-postgres
             - voi-es
-            - voi-kibana
         links:
             - voi-postgres
             - voi-es
-            - voi-kibana
 
     voi-postgres:
         image: "postgres:9.6-alpine"
@@ -44,14 +43,6 @@ services:
         ports:
             - 9200:9200
 
-    voi-kibana:
-        image: docker.elastic.co/kibana/kibana:6.6.0
-        container_name: voi-kibana
-        environment:
-            ELASTICSEARCH_URL: http://voi-es:9200
-            ELASTICSEARCH_HOSTS: http://voi-es:9200
-        ports:
-            - 5601:5601
 
 volumes:
     voi-production-pg:
