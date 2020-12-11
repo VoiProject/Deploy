@@ -5,6 +5,7 @@ services:
             sleep 15 &&
             pytest -rA"
         volumes:
+            - ./FlaskBackend/documents:/documents
             - voi-testing-audio:/audio_data
 
     voi-postgres:

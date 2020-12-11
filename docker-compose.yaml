@@ -46,7 +46,9 @@ services:
 
 volumes:
     voi-production-pg:
+        driver: local
     voi-testing-pg:
+        driver: local
     voi-production-audio:
         driver: local
     voi-testing-audio:

@@ -15,11 +15,11 @@ services:
         volumes:
             - voi-production-es:/usr/share/elasticsearch/data
 
-    voi-kibana:
-        image: docker.elastic.co/kibana/kibana:6.6.0
-        container_name: voi-kibana
-        environment:
-            ELASTICSEARCH_URL: http://voi-es:9200
-            ELASTICSEARCH_HOSTS: http://voi-es:9200
-        ports:
-            - 5601:5601
+#    voi-kibana:
+#        image: docker.elastic.co/kibana/kibana:6.6.0
+#        container_name: voi-kibana
+#        environment:
+#            ELASTICSEARCH_URL: http://voi-es:9200
+#            ELASTICSEARCH_HOSTS: http://voi-es:9200
+#        ports:
+#            - 5601:5601
