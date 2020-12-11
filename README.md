@@ -33,7 +33,7 @@ sudo apt install git
 mkdir Voi
 cd Voi
 git clone https://github.com/VoiProject/Deploy.git
-cd Deoloy
+cd Deploy
 git clone https://github.com/VoiProject/FlaskBackend.git
 cd FlaskBackend
 git clone https://github.com/VoiProject/Frontend.git
